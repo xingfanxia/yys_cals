@@ -30,16 +30,18 @@ def drange(start, stop, step):
 if __name__ == '__main__':
 	target = 200000
 	targets = [30000, 20000, 200000, 10000, 10000, 200000]
+	douji_targets_2000mmr = map(lambda x: x * 2, targets) #l = [x * 2 for x in l]
+	douji_targets_3000mmr = map(lambda x: x * 2.5, targets)	
 	armor_ls = [800, 800, 800, 400, 400, 800]
 	god_dmg = group_dmg(3082+4614, 2, targets, armor_ls)
 	shit_dmg = group_dmg(3082+5145, 1.64, targets, armor_ls)
-	print "target_hp", targets
+	print "target_hp", douji_targets_2000mmr
 	print "god dmg", god_dmg
 	print "shitty dmg", shit_dmg
 
 	flag = 0
 	for atk in range(10000):
-		if dmg(3082+4614, 2, 1000000, 800) < dmg(atk, 1.64, 1000000, 800):
+		if dmg(3082+4614, 2, 1000000, 800) < dmg(atk, 1.5, 1000000, 800):
 			print "attack dmg needs to be: ", atk
 			flag = 1
 			break
@@ -50,7 +52,7 @@ if __name__ == '__main__':
 
 	flag_g = 0
 	for atk in range(10000):
-		if group_dmg(3082+4614, 2, targets, armor_ls) < group_dmg(atk, 1.64, targets, armor_ls):
+		if group_dmg(3082+4614, 2, douji_targets_2000mmr, armor_ls) < group_dmg(atk, 1.5, douji_targets_2000mmr, armor_ls):
 			print "for group dmg, attack dmg needs to be: ", atk
 			flag_g = 1
 			break
